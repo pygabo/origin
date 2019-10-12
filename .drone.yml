@@ -9,7 +9,6 @@ platform:
 steps:
 - name: test
   image: tmaier/docker-compose
-  privileged: true
   commands:
   - docker-compose -f local.yml run --rm django flake8
   - docker-compose -f local.yml run django coverage run -m pytest
@@ -17,5 +16,4 @@ steps:
 services:
 - name: docker
   image: docker:dind
-  privileged: true
 
