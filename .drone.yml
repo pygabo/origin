@@ -10,9 +10,6 @@ steps:
 - name: test
   image: tmaier/docker-compose
   privileged: true
-  volumes:
-  - name: docker_sock
-    path: /var/run/docker.sock
   commands:
   - docker-compose -f local.yml run --rm django flake8
   - docker-compose -f local.yml run django coverage run -m pytest
@@ -22,8 +19,3 @@ services:
   image: docker:dind
   privileged: true
 
-
-volumes:
-  - name: docker_sock
-    host:
-      path: /var/run/docker.sock
